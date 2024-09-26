@@ -28,62 +28,34 @@ Considerações Técnicas
 * JavaScript: O arquivo endereco.js deve conter a lógica para coletar os dados do formulário e realizar as operações necessárias, como validação ou envio para um servidor.
 
 # Função para consumo de API ViaCEP
-Vamos analisar o código que você compartilhou, que se refere a uma função que pesquisa informações de endereço a partir de um CEP (Código de Endereçamento Postal) utilizando a API do ViaCEP. Aqui está uma explicação passo a passo:
+Esse código JavaScript cria uma função que busca informações sobre um endereço a partir de um CEP (Código de Endereçamento Postal) brasileiro. Quando você digita um CEP em um campo HTML e sai dele (evento `focusout`), a função é acionada e faz uma requisição a uma API (ViaCEP) para obter os dados do endereço correspondente.
 
-# 1. Declaração da função
-```javascript
-const pesquisarCEP = async () => {
-```
-- Aqui, `pesquisarCEP` é uma função assíncrona, o que permite o uso de `await` dentro dela para lidar com promessas.
+# Limpar formulário:
+Antes de cada pesquisa, o formulário é limpo para garantir que os dados da pesquisa anterior não interfiram na nova pesquisa.
+# Montar a URL:
+ A função cria uma URL completa para a API ViaCEP, incluindo o CEP informado pelo usuário.
+# Verificar CEP:
+ O CEP é validado para garantir que tenha o formato correto.
+# Fazer a requisição:
+ Se o CEP for válido, a função faz uma requisição à API usando o método `fetch`.
+# Receber os dados:
+A resposta da API, que contém as informações do endereço, é convertida para formato JSON e armazenada na variável `addres`.
+# Verificar erro:
+Se a API retornar um erro (CEP não encontrado), um alerta é exibido.
+# Preencher formulário:
+Caso contrário, os dados do endereço são usados para preencher os campos correspondentes no formulário HTML.
+# `focusout`:
+ A função `pesquisarCEP` é associada ao evento `focusout` do campo CEP. Isso significa que a função será executada automaticamente sempre que o usuário sair do campo CEP.
 
-# 2. Limpar o formulário
-```javascript
-    limparFormulario();
-```
-- A função `limparFormulario()` é chamada para limpar os campos do formulário antes de iniciar a pesquisa.
+# PARA QUE SERVE?
+Esse tipo de código é muito útil em formulários de cadastro ou pesquisa, onde é necessário obter informações sobre um endereço de forma rápida e automatizada. Ao invés de o usuário ter que preencher manualmente todos os campos do endereço, ele pode simplesmente digitar o CEP e o sistema se encarrega de buscar as demais informações.
 
-# 3. Montagem da URL
-```javascript
-    const url = `http://viacep.com.br/ws/${cep.value}/json/`;
-```
-- A URL para a API do ViaCEP é construída usando o valor do campo de entrada `cep`. A variável `cep` deve referir-se a um elemento de entrada (input) onde o usuário digita o CEP.
+* API: Uma interface de programação de aplicativos que permite que diferentes softwares se comuniquem entre si.
+* Fetch: Uma função do JavaScript que permite fazer requisições HTTP para servidores.
+* JSON: Um formato de texto leve para troca de dados.
+* Evento: Uma ação que ocorre em um elemento HTML, como clicar em um botão ou sair de um campo de texto.
 
-# 4. Validação do CEP
-```javascript
-    if (cepValido(cep.value)) {
-```
-- A função `cepValido()` verifica se o CEP inserido é válido. Se for válido, o código dentro do `if` será executado.
-
-# 5. Fetch da API
-```javascript
-        const dados = await fetch(url);
-        const addres = await dados.json();
-```
-- `fetch(url)` faz uma requisição à API. A resposta é aguardada (`await`), e em seguida, os dados são convertidos para JSON.
-
-# 6. Verificação de erro
-```javascript
-        if (addres.hasOwnProperty('erro')) {
-            alert('CEP não encontrado');
-        } else {
-            preencherFormulario(addres);
-        }
-```
-- Aqui, é verificado se a resposta contém um erro (ou seja, se o CEP não foi encontrado). Se houver um erro, um alerta é exibido. Caso contrário, a função `preencherFormulario(addres)` é chamada para preencher os campos do formulário com os dados retornados.
-
-# 7. Tratamento de CEP incorreto
-```javascript
-    } else {
-        alert('CEP Incorreto');
-    }
-```
-- Se o CEP não for válido, um alerta informa o usuário que o CEP está incorreto.
-
-# 8. Adicionando um listener
-```javascript
-document.getElementById('cep').addEventListener('focusout', pesquisarCEP);
-```
-- Um event listener é adicionado ao campo de entrada com o ID `cep`. A função `pesquisarCEP` será chamada quando o campo perder o foco (`focusout`), ou seja, quando o usuário clicar fora do campo após digitar o CEP.
-
-# RESUMO
-Esse código realiza a pesquisa de um endereço com base em um CEP digitado pelo usuário. Se o CEP for válido e encontrado, os campos do formulário são preenchidos automaticamente com as informações retornadas pela API. Se o CEP for inválido ou não for encontrado, o usuário recebe um alerta.
+# OBSERVAÇÕES
+* API ViaCEP: A API ViaCEP é um serviço gratuito que fornece informações sobre endereços brasileiros.
+* Asynchronous JavaScript: O uso do `async/await` torna o código mais fácil de ler e entender, pois permite tratar o código assíncrono de forma mais síncrona.
+* Validação do CEP:É importante validar o CEP para evitar erros e garantir que a pesquisa seja feita corretamente.
