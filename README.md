@@ -3,6 +3,7 @@
 ## DESCRIÇÃO
 Este projeto é um formulário simples para registrar endereços, permitindo que os usuários insiram informações necessárias sobre seu local de residência.
 
+![gif](CEP.gif)
 ## INTRODUÇÃO
 A estrutura do Formulário contém os seguintes campos:
 
