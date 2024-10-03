@@ -6,7 +6,7 @@
     <title>Cadastro de Endereço</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <script src='endereco.js'></script>
+    
 </head>
 <body>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,31 +17,27 @@
     <div class="container mt-5">
         <div class="mb-3">
             <label for="CEP" class="form-label">CEP</label>
-            <input type="text" class="form-control" id="CEP">
+            <input type="text" class="form-control" id="cep">
         </div>
         <div class="mb-3">
-            <label for="Rua" class="form-label">Rua</label>
-            <input type="email" class="form-control" id="Rua">
+            <label for="Rua" class="form-label">logradouro</label>
+            <input type="email" class="form-control" id="logradouro">
         </div>
         <div class="mb-3">
             <label for="Nº" class="form-label">Nº</label>
             <input type="text" class="form-control" id="Nº">
         </div>
         <div class="mb-3">
-            <label for="Bairro" class="form-label">Bairro</label>
-            <input type="text" class="form-control" id="Bairro">
+            <label for="Bairro" class="form-label">bairro</label>
+            <input type="text" class="form-control" id="bairro">
         </div>
         <div class="mb-3">
-            <label for="Complemento" class="form-label">Complemento</label>
-            <input type="text" class="form-control" id="Complemento">
+            <label for="Complemento" class="form-label">localidade</label>
+            <input type="text" class="form-control" id="localidade">
         </div>
         <div class="mb-3">
-            <label for="Cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="Cidade">
-        </div>
-        <div class="mb-3">
-            <label for="Estado" class="form-label">Estado</label>
-            <input type="text" class="form-control" id="Estado">
+            <label for="Estado" class="form-label">uf</label>
+            <input type="text" class="form-control" id="uf">
         </div>
         <button type="button" onclick="salvarUser()"  class="btn btn-success">Entrar</button>
     </div>
